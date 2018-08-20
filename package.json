@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "sw-precache": "^5.2.1",
+    "sw-toolbox": "^3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
