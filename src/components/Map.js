@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as dataLocations from './locations.json'
 import InfoWindow from './InfoWindow.js'
+import FilterLocations from './Filter.js'
 
 class Map extends Component {
   constructor(props) {
@@ -77,6 +78,11 @@ class Map extends Component {
   render() {
     return (
       <div className="App">
+        <FilterLocations
+          locationsList={this.state.locations}
+          markers={this.state.markers}
+          openInfoWindow={this.openInfoWindow}
+        />
         {
           this.state.infoWindowIsOpen &&
           <InfoWindow

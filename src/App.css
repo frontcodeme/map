@@ -12,41 +12,67 @@ html, body, main{
   width: 100%;
 }
 
-// settings for off canvas nav element
-nav {
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  transform: translate(-300px, 0);
-  transition: transform 0.3s ease;
-}
-
 .App,
 #map {
   height: 100%;
-  width: 100%;
+}
+
+.list-btn,
+.list-input,
+.info-window-box {
+  box-shadow: 0 0 3px rgba(170, 170, 170, 0.75);
+  border-radius: 10%;
+}
+
+/* FILTER LOCATIONS */
+/* ------------------------------ */
+.list-form {
+  max-width: 250px;
+}
+.list-box {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  z-index: 100;
+  padding: 0 10px;
+}
+
+.list-btn {
+  border: none;
+  padding: 5px 8px;
+  background: #fff;
+  font-weight: 600;
+  border-radius: 2px 0 0 2px;
+}
+
+.list-btn:hover {
+  background: #ebebeb;
+}
+
+.list-input {
+  border: none;
+  padding: 5px 8px;
+  border-radius: 0 2px 2px 0;
+  width: 225px;
 
 }
 
-.menuToggle {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-ul.location-item {
-  padding: 1em 0;
-  margin-bottom: 2rem;
-}
-
-ul.locations-list {
-  height: 100%;
-  width: 250px;
+.locations-list {
   padding: 0 10px 10px 10px;
   list-style: none;
   background: #fff;
-  max-width: 250px;
+  width: 225px;
+}
 
+.location-item {
+  padding: 10px 0;
+  border-bottom: 4px solid #fff;
+}
+
+.location-item:hover {
+  border-color: #35b4bf;
+  color: #35b4bf;
+  cursor: pointer;
 }
 
 /* FOOTER */

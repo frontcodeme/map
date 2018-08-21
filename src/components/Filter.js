@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
-
 import * as dataLocations from './locations.json';
 
 class FilterLocations extends Component {
@@ -49,14 +48,14 @@ class FilterLocations extends Component {
   handleDisplayedLocations = (query) => {
     /* Manage the sync of locations */
     let controlledThis = this;
-    let filtLocations;
+    let filterLocations;
     let filtMarkers;
 
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
 
       /* Add location to the array if its title match the query */
-      filtLocations = this.props.locationsList.filter(location =>
+      filterLocations = this.props.locationsList.filter(location =>
         match.test(location.title)
       );
 
@@ -66,7 +65,7 @@ class FilterLocations extends Component {
       );
 
       this.setState({
-        filteredLocations: filtLocations,
+        filteredLocations: filterLocations,
         filteredMarkers: filtMarkers
       });
     } else {
@@ -147,8 +146,7 @@ class FilterLocations extends Component {
     const { query, filteredLocations, listIsOpen } = this.state;
 
     return (
-      <nav role="navigation">
-      <div className="menuToggle">
+      <div className="list-box">
         <form
           className="list-form"
           onSubmit={(event) => event.preventDefault()}
@@ -193,7 +191,6 @@ class FilterLocations extends Component {
         </ul>
         }
       </div>
-      </nav>
     );
   }
 }
