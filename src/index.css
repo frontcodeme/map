@@ -1,25 +1,5 @@
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
   font-family: sans-serif;
-}
-
-.App,
-#map {
-  height: 100%;
-}
-
-#hide-listings,
-#show-listings {
-  width: 48%;
 }

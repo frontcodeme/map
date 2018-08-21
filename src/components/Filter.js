@@ -147,7 +147,8 @@ class FilterLocations extends Component {
     const { query, filteredLocations, listIsOpen } = this.state;
 
     return (
-      <section className="list-box">
+      <nav role="navigation">
+      <div className="menuToggle">
         <form
           className="list-form"
           onSubmit={(event) => event.preventDefault()}
@@ -156,12 +157,12 @@ class FilterLocations extends Component {
             className="list-btn"
             onClick={() => this.toggleListVisibility()}
           >
-            List
+            Filter
           </button>
 
           <input
             className="list-input"
-            aria-labelledby="filter"
+            aria-labelledby="filter locations"
             type="text"
             placeholder="Type location name..."
             value={query}
@@ -191,7 +192,8 @@ class FilterLocations extends Component {
           }
         </ul>
         }
-      </section>
+      </div>
+      </nav>
     );
   }
 }
