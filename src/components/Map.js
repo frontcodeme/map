@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as dataLocations from './locations.json'
+import InfoWindow from './InfoWindow.js'
 
 class Map extends Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class Map extends Component {
       locations: dataLocations,
       map: '',
       markers: [],
+      infoWindowIsOpen: false,
+      infoContent: ''
     }
   }
 
@@ -17,6 +20,7 @@ class Map extends Component {
   }
 
   initMap = () => {
+    let controlledThis = this
     const { locations, markers } = this.state
 
     /* Define the map */
@@ -48,12 +52,38 @@ class Map extends Component {
 
       /* Get those markers into the state */
       markers.push(marker)
+
+      /* Open infoWindow when click on the marker */
+      marker.addListener('click', function () {
+        controlledThis.openInfoWindow(marker)
+      })
     }
+  }
+
+  openInfoWindow = (marker) => {
+    this.setState({
+      infoWindowIsOpen: true,
+      currentMarker: marker
+    });
+  }
+
+  closeInfoWindow = () => {
+    this.setState({
+      infoWindowIsOpen: false,
+      currentMarker: {}
+    });
   }
 
   render() {
     return (
       <div className="App">
+        {
+          this.state.infoWindowIsOpen &&
+          <InfoWindow
+            currentMarker={this.state.currentMarker}
+            infoContent={this.state.infoContent}
+          />
+        }
       <div id="map" role="application"></div>
       </div>
     )
@@ -64,14 +94,14 @@ class Map extends Component {
 export default Map
 
 function parseHtml(src) {
-  let ref = window.document.getElementsByTagName('script')[0];
-  let script = window.document.createElement('script');
+  let ref = window.document.getElementsByTagName('script')[0]
+  let script = window.document.createElement('script')
 
-  script.src = src;
-  script.async = true;
-  ref.parentNode.insertBefore(script, ref);
+  script.src = src
+  script.async = true
+  ref.parentNode.insertBefore(script, ref)
 
   script.onerror = function () {
     document.write('Load error: Google Maps couldn\'t load correctly' )
-  };
+  }
 }
