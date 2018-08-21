@@ -3,28 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <script async defer src=
-     "https://maps.googleapis.com/maps/api/js?key=AIzaSyA-cxVbqryrikvhCdgcGhzjEIlC5Pwmz0o&v=3&callback=initMap">
-    </script>
-
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <script>
-        if (‘serviceWorker’ in navigator) {
-          window.addEventListener(‘load’, function() {
-            navigator.serviceWorker.register(‘/sw.js’).then(
-              function(registration) {
-                // Registration was successful
-                console.log(‘ServiceWorker registration successful with scope: ‘, registration.scope); },
-              function(err) {
-                // registration failed :(
-                console.log(‘ServiceWorker registration failed: ‘, err);
-              });
-          });
-        }
-    </script>
     <title>Map React App</title>
+   <script async defer src=
+    "https://maps.googleapis.com/maps/api/js?AIzaSyA-cxVbqryrikvhCdgcGhzjEIlC5Pwmz0o&v=3&callback=initMap">
+   </script>
   </head>
   <body>
     <div id="root"></div>

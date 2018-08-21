@@ -5,12 +5,11 @@ class Footer extends Component {
   render() {
     return(
       <footer id="footer" tabIndex={0}>
-        <div class="bottom-bar">Made with
-          <span class="heart">❤</span> by
-          <a target="_blank"
+        <div className="bottom-bar">Made with
+          <span className="heart"> ❤ </span> by <a
           href="https://github.com/frontcodeme/map"role="link" tabIndex={0}
           aria-label="Link to developers github">
-          <span>M</span>
+          <span> M </span>
           </a>
         </div>
       </footer>

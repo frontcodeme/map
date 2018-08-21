@@ -1,0 +1,32 @@
+[
+  {
+    "key": "key-kamppi",
+    "title": "Airport",
+    "address": "Aéroport Tanger-Ibn Batouta",
+    "position": { "lat": 35.726595, "lng": -5.915068 }
+  },
+  {
+    "key": "key-Kasbah",
+    "title": "Kasbah Museum",
+    "address": "Place du Mechoir, Tanger, Morocco",
+    "position": { "lat": 35.788596, "lng": -5.812124 }
+  },
+  {
+    "key": "key-Spartel",
+    "title": "Cap Spartel",
+    "address": "Cap Spartel, Tangier, Morocco",
+    "position": { "lat": 35.786358, "lng": -5.914557 }
+  },
+  {
+    "key": "key-Asilah",
+    "title": "The little town of Asilah",
+    "address": "Asilah, Morocco",
+    "position": { "lat": 35.464613, "lng": -6.030865 }
+  },
+  {
+    "key": "key-Larache",
+    "title": "The seaside town of Larache",
+    "address": "Larache, Morocco",
+    "position": { "lat": 35.174427, "lng": -6.147396 }
+  }
+]
