@@ -19,3 +19,7 @@ body,
   height: 100%;
 }
 
+#hide-listings,
+#show-listings {
+  width: 48%;
+}

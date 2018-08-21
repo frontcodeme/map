@@ -1,29 +1,8 @@
-import React, { Component } from 'react'
-import * as dataLocations from './locations.json'
-import InfoWindow from './InfoWindow.js'
-
-class Map extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      locations: dataLocations,
-      map: '',
-      markers: [],
-      infoWindowIsOpen: false,
-      infoContent: ''
-    }
-  }
-
-  componentDidMount() {
-    window.initMap = this.initMap
-    parseHtml('https://maps.googleapis.com/maps/api/js?key=AIzaSyA-cxVbqryrikvhCdgcGhzjEIlC5Pwmz0o&callback=initMap')
-  }
-
   initMap = () => {
     let controlledThis = this
     const { locations, markers } = this.state
 
-    /* Define the map */
+    /* Constructor creates a new map - only center and zoom are required. */
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: { lat: 35.7594651, lng: -5.833954299999999 }
@@ -34,14 +13,14 @@ class Map extends Component {
       map
   })
 
-    /*  The following group uses the location array to create an array of markers on initialize. */
+    /* Create a marker for each location in the locations.json file */
     for (let i = 0; i < locations.length; i++) {
-      /* Get the position from the location array. */
+      /* Define the values of the properties */
       let position = locations[i].position
       let title = locations[i].title
       let id = locations[i].key
 
-      /* Create a marker per location, and put into markers array. */
+      /* Create the marker itself */
       let marker = new window.google.maps.Marker({
         map: map,
         position: position,
@@ -50,10 +29,10 @@ class Map extends Component {
         id: id
       })
 
-      /* Push the marker to our array of markers */
+      /* Get those markers into the state */
       markers.push(marker)
 
-      /* Create an onclick event to open an infowindow at each marker */
+      /* Open infoWindow when click on the marker */
       marker.addListener('click', function () {
         controlledThis.openInfoWindow(marker)
       })
@@ -63,27 +42,27 @@ class Map extends Component {
   openInfoWindow = (marker) => {
     this.setState({
       infoWindowIsOpen: true,
-      selectedMarker: marker
+      currentMarker: marker
     });
   }
 
   closeInfoWindow = () => {
     this.setState({
       infoWindowIsOpen: false,
-      selectedMarker: {}
+      currentMarker: {}
     });
   }
 
-  render() {
+    render() {
     return (
       <div className="App">
-        {
+         {
           this.state.infoWindowIsOpen &&
           <InfoWindow
-            selectedMarker={this.state.selectedMarker}
+            currentMarker={this.state.currentMarker}
             infoContent={this.state.infoContent}
           />
-        }
+         }
       <div id="map" role="application"></div>
       </div>
     )
