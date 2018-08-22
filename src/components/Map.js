@@ -17,7 +17,7 @@ class Map extends Component {
 
   componentDidMount() {
     window.initMap = this.initMap
-    parseHtml('https://maps.googleapis.com/maps/api/js?key=AIzaSyA-cxVbqryrikvhCdgcGhzjEIlC5Pwmz0o&callback=initMap')
+    parseHtml('https://maps.googleapis.com/maps/api/js?key=AIzaSyBfB8UMdS7E9dAIHPW3HzKTkkjsMHg2i0I&callback=initMap')
   }
 
   initMap = () => {
@@ -27,9 +27,13 @@ class Map extends Component {
     /* Define the map */
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 15,
-      center: { lat: 35.7594651, lng: -5.833954299999999 }
+      center: { lat: 35.7594651, lng: -5.833954299999999 },
+      mapTypeControl: true,
+          mapTypeControlOptions: {
+              style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: window.google.maps.ControlPosition.LEFT_TOP
+          },
     })
-
     /* Keep state in sync */
     this.setState({
       map
