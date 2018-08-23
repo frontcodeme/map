@@ -17,7 +17,7 @@ class Map extends Component {
 
   componentDidMount() {
     window.initMap = this.initMap
-    parseHtml('https://maps.googleapis.com/maps/api/js?key=AIzaSyBfB8UMdS7E9dAIHPW3HzKTkkjsMHg2i0I&callback=initMap')
+    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBfB8UMdS7E9dAIHPW3HzKTkkjsMHg2i0I&callback=initMap')
   }
 
   initMap = () => {
@@ -29,15 +29,16 @@ class Map extends Component {
       zoom: 15,
       center: { lat: 35.7594651, lng: -5.833954299999999 },
       mapTypeControl: true,
-          mapTypeControlOptions: {
-              style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-              position: window.google.maps.ControlPosition.LEFT_TOP
-          },
+      mapTypeControlOptions: {
+        style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: window.google.maps.ControlPosition.LEFT_TOP
+      },
     })
     /* Keep state in sync */
     this.setState({
       map
   })
+    var bounds = new window.google.maps.LatLngBounds();
 
     /*  The following group uses the location array to create an array of markers on initialize. */
     for (let i = 0; i < locations.length; i++) {
@@ -62,8 +63,13 @@ class Map extends Component {
       marker.addListener('click', function () {
         controlledThis.openInfoWindow(marker)
       })
+      bounds.extend(markers[i].position);
     }
+    // Extend the boundaries of the map for each marker
+    map.fitBounds(bounds);
   }
+
+// TODO:  replace open, close infoWindow with populate f
 
   openInfoWindow = (marker) => {
     this.setState({
@@ -103,13 +109,13 @@ class Map extends Component {
 
 export default Map
 
-function parseHtml(src) {
-  let ref = window.document.getElementsByTagName('script')[0]
+function loadScript(src) {
+  let index = window.document.getElementsByTagName('script')[0]
   let script = window.document.createElement('script')
 
   script.src = src
   script.async = true
-  ref.parentNode.insertBefore(script, ref)
+  index.parentNode.insertBefore(script, index)
 
   script.onerror = function () {
     document.write('Load error: Google Maps couldn\'t load correctly' )

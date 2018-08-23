@@ -85,6 +85,27 @@ html, body, main{
   cursor: pointer;
 }
 
+
+
+/* INFO WINDOW */
+/* ------------------------------ */
+.info-window-box {
+  z-index: 50;
+  max-width: 250px;
+  height: 50%;
+  min-height: 250px;
+  overflow: auto;
+  background: #fff;
+  padding: 10px;
+  border-radius: 2px 2px 0 0;
+}
+
+.info-window-box h2 {
+  border-bottom: 2px solid #bbb;
+  padding: 0 0 5px 0;
+  margin: 0 0 10px 0;
+}
+
 /* FOOTER */
 
 footer {
