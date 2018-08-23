@@ -10,8 +10,6 @@ class Map extends Component {
       locations: dataLocations,
       map: '',
       markers: [],
-      infoWindowIsOpen: false,
-      infoContent: ''
     }
   }
 
@@ -23,8 +21,7 @@ class Map extends Component {
   initMap = () => {
     let controlledThis = this
     const { locations, markers } = this.state
-
-    /* Define the map */
+    var largeInfowindow = new window.google.maps.InfoWindow();
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: { lat: 35.7594651, lng: -5.833954299999999 },
@@ -56,34 +53,32 @@ class Map extends Component {
         id: id
       })
 
-      /* Push the marker to our array of markers */
+      /* Get those markers into the state */
       markers.push(marker)
 
-      /* Create an onclick event to open an infowindow at each marker */
-      marker.addListener('click', function () {
-        controlledThis.openInfoWindow(marker)
-      })
+      // Create an onclick event to open an infowindow at each marker.
+      marker.addListener('click', function() {
+        popInfoWindow(this, largeInfowindow);
+      });
+
       bounds.extend(markers[i].position);
     }
     // Extend the boundaries of the map for each marker
     map.fitBounds(bounds);
-  }
 
-// TODO:  replace open, close infoWindow with populate f
-
-  openInfoWindow = (marker) => {
-    this.setState({
-      infoWindowIsOpen: true,
-      selectedMarker: marker
-    });
-  }
-
-  closeInfoWindow = () => {
-    this.setState({
-      infoWindowIsOpen: false,
-      selectedMarker: {}
-    });
-  }
+    function popInfoWindow(marker, infowindow) {
+        // Check to make sure the infowindow is not already opened on this marker.
+        if (infowindow.marker !== marker) {
+          infowindow.marker = marker;
+          infowindow.setContent('<div>' + marker.title + '</div>');
+          infowindow.open(map, marker);
+          // Make sure the marker property is cleared if the infowindow is closed.
+          infowindow.addListener('closeclick', function() {
+            infowindow.marker = null;
+          });
+        }
+    }
+}
 
   render() {
     return (
@@ -91,15 +86,7 @@ class Map extends Component {
         <FilterLocations
           locationsList={this.state.locations}
           markers={this.state.markers}
-          openInfoWindow={this.openInfoWindow}
         />
-        {
-          this.state.infoWindowIsOpen &&
-          <InfoWindow
-            selectedMarker={this.state.selectedMarker}
-            infoContent={this.state.infoContent}
-          />
-        }
       <div id="map" role="application"></div>
       </div>
     )
