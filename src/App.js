@@ -4,6 +4,8 @@ import Map from './components/Map.js'
 import * as dataLocations from './components/locations.json';
 import InfoWindow from './components/InfoWindow.js'
 import Footer from './components/Footer.js'
+import Nav from './components/Nav.js'
+// import SideNav, {MenuIcon} from 'react-simple-sidenav'
 import FilterLocations from './components/Filter.js'
 import axios from 'axios'
 
@@ -45,7 +47,8 @@ class App extends Component {
         console.log(response.data.response.groups[0].items)
         this.setState({
           venues: response.data.response.groups[0].items
-        }, this.renderMap(), console.log(this.state.venues)
+        }, this.renderMap(),
+        console.log(this.state.venues)
         )
       })
       .catch(error => {
@@ -58,11 +61,11 @@ class App extends Component {
     var largeInfowindow = new window.google.maps.InfoWindow();
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 14,
-      center: { lat: 35.7594651, lng: -5.833954299999999 },
+      center: { lat: 35.78, lng: -5.81 },
       mapTypeControl: true,
       mapTypeControlOptions: {
         style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: window.google.maps.ControlPosition.LEFT_TOP
+        position: window.google.maps.ControlPosition.TOP_CENTER
       },
     })
 
@@ -71,8 +74,8 @@ class App extends Component {
       var bounds = new window.google.maps.LatLngBounds();
 
       this.state.venues.map(myVenue => {
-
-      var contentString = `${myVenue.venue.name}`
+      var contentString = `Name: ${myVenue.venue.name}
+        Address: ${myVenue.venue.location.address}`
 
       // Create A Marker
       var marker = new window.google.maps.Marker({
@@ -83,14 +86,15 @@ class App extends Component {
           lng: myVenue.venue.location.lng
         },
         map: map,
-        title: myVenue.venue.name
+        title: myVenue.venue.name,
+        location: myVenue.venue.location.address
       })
 
         // Click on A Marker!
         marker.addListener('click', function() {
-          bounds.extend(marker.position);
+          // bounds.extend(marker.position);
           // Extend the boundaries of the map for each marker
-          map.fitBounds(bounds);
+          // map.fitBounds(bounds);
 
           // Change the content
           infowindow.setContent(contentString)
@@ -103,6 +107,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Nav />
         <Map />
         <Footer />
       </div>
