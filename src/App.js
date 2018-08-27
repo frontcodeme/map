@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import './App.css'
-import Map from './components/Map.js'
-import * as dataLocations from './components/locations.json';
-import InfoWindow from './components/InfoWindow.js'
-import Footer from './components/Footer.js'
-import Nav from './components/Nav.js'
-import FilterLocations from './components/Filter.js'
 import axios from 'axios'
+import './App.css'
+// components
+import Nav from './components/Nav.js'
+import Map from './components/Map.js'
+import Footer from './components/Footer.js'
 
 class App extends Component {
   constructor(props) {
@@ -39,14 +37,12 @@ class App extends Component {
       client_secret: "U3S2PRMH1LWEI3MDV3OKHAYHVOFKDWY0VJOIMT45SZESCFGA",
       query: query,
       near: location,
-      // ll: "35.7594651,-5.833954299999999",
-      // radius: "10000",
+
       v: "20182608"
   }
     // Fetching data from API
     axios.get(endPoint + new URLSearchParams(parameters))
       .then(response => {
-        // console.log(response.data.response.groups[0].items)
         this.setState({
           venues: response.data.response.groups[0].items,
           allVenues: response.data.response.groups[0].items,
@@ -62,7 +58,6 @@ class App extends Component {
   }
 
   initMap = () => {
-    // const { locations, markers } = this.state
     var largeInfowindow = new window.google.maps.InfoWindow();
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 14,
@@ -80,7 +75,6 @@ class App extends Component {
         // greater control over the various content elements
         maxWidth: 300
       })
-      // var bounds = new window.google.maps.LatLngBounds();
 
       this.state.venues.map(myVenue => {
 
@@ -97,8 +91,6 @@ class App extends Component {
 
       // Create A Marker
       var marker = new window.google.maps.Marker({
-        // position: { lat: 35.7594651, lng: -5.833954299999999 }, //Testing init map
-        // Here!!! replace the position & title with the locations.json
         title: myVenue.venue.name,
         position: {
           lat: myVenue.venue.location.lat ,
@@ -114,9 +106,6 @@ class App extends Component {
 
         // Click on A Marker!
         marker.addListener('click', function() {
-          // Extend the boundaries of the map for each marker
-              // bounds.extend(marker.position);
-              // map.fitBounds(bounds);
 
           // Change the content
           infowindow.setContent(contentString)
