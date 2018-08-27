@@ -85,25 +85,32 @@ html, body, main{
   cursor: pointer;
 }
 
-
+.foursquare {
+    position: absolute;
+    bottom: 2px;
+    width: 60%;
+    right: 0;
+}
 
 /* INFO WINDOW */
 /* ------------------------------ */
-.info-window-box {
-  z-index: 50;
-  max-width: 250px;
-  height: 50%;
-  min-height: 250px;
-  overflow: auto;
-  background: #fff;
-  padding: 10px;
-  border-radius: 2px 2px 0 0;
+#iw-container {
+  margin-bottom: 10px;
 }
-
-.info-window-box h2 {
-  border-bottom: 2px solid #bbb;
-  padding: 0 0 5px 0;
-  margin: 0 0 10px 0;
+#iw-container .iw-title {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px;
+  background-color: #48b5e9;
+  color: white;
+  margin: 0;
+  border-radius: 15px 0 0 15px;
+}
+.iw-subTitle {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px 0;
 }
 
 /* FOOTER */
