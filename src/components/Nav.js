@@ -9,7 +9,6 @@ class Nav extends React.Component {
     venue: this.props.venue
   }
 
-
     updateQuery = (query) => {
         this.setState({ query })
 
@@ -26,16 +25,17 @@ class Nav extends React.Component {
         }
     }
 
-    triggerMarkerClick = (venueTitle) => {
-        this.props.markers.map((marker) => {
-            if(marker.title === venueTitle) {
-                window.google.maps.event.trigger(marker, 'click');
-            }
-        })
-    }
-      showSettings (event) {
-    event.preventDefault()
+  markerClicked = (venueName) => {
+    // console.log(venueName);  //Working here!  [Prints Venue Name]
+      this.props.markers.map((marker) => {
+        console.log(venueName)
+          if(marker.title === venueName) {
+
+              window.google.maps.event.trigger(marker, 'click');
+          }
+      })
   }
+
   render () {
     // nav sidebar styles
     var styles = {
@@ -77,32 +77,30 @@ class Nav extends React.Component {
     }
     return (
       <Menu styles={ styles }>
+{      // <img className="foursquare" src="./public/foursquare_attr.png" srcSet="./public/foursquare_attr@2x.png" alt="Powered By Foursquare!" />
+}
         <div className="search-form">
           <label htmlFor="searchQuery">Find A Place!</label>
             <input
                 id="searchQuery"
-                aria-labelledby="filter"
+                aria-label = "Enter place Name to Filter"
                 type="text"
                 placeholder="Search Here"
-                onChange={(e) => this.updateQuery(e.target.value)}
+                onChange={(e) => this.updateQuery(e.target.value)} //update search values
                 value={this.state.query}
           />
-          <img
-          className="foursquare"
-          src="./public/foursquare_attr.png"
-          srcSet="./public/foursquare_attr@2x.png"
-          alt="Powered By Foursquare!"
-          />
+
         </div>
 
          {this.state.venue.length !== 0 && (
-          <ul className="search-result">
+          <ul className="search-result"
+          arial-label="List Of neighbourhood places">
               {this.state.venue.map((myVenue, index) => (
                   <li
                       key={index}
                       tabIndex={index}
                       className="item"
-                      onClick={() => this.triggerMarkerClick(myVenue.venue.name)}
+                      onClick={() => this.markerClicked(myVenue.venue.name)}
                   >
                       {myVenue.venue.name}
                   </li>

@@ -99,21 +99,24 @@ class App extends Component {
       var marker = new window.google.maps.Marker({
         // position: { lat: 35.7594651, lng: -5.833954299999999 }, //Testing init map
         // Here!!! replace the position & title with the locations.json
+        title: myVenue.venue.name,
         position: {
           lat: myVenue.venue.location.lat ,
           lng: myVenue.venue.location.lng
         },
         map: map,
-        title: myVenue.venue.name,
         location: myVenue.venue.location.address,
         animation: window.google.maps.Animation.DROP,
       })
 
+        // Add each created marker to the 'markers' array
+        this.state.markers.push(marker)
+
         // Click on A Marker!
         marker.addListener('click', function() {
-          // bounds.extend(marker.position);
           // Extend the boundaries of the map for each marker
-          // map.fitBounds(bounds);
+              // bounds.extend(marker.position);
+              // map.fitBounds(bounds);
 
           // Change the content
           infowindow.setContent(contentString)

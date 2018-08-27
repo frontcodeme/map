@@ -24,72 +24,25 @@ html, body, main{
 
 /* FILTER LOCATIONS */
 /* ------------------------------ */
-.list-form {
-  max-width: 250px;
+.search-result {
+    width: 230px;
+    max-height: calc(85vh - 61px);
+    overflow-y: scroll;
 }
-.list-box {
-  position: fixed;
-  top: 10px;
-  left: 0;
-  z-index: 100;
-  padding: 0 10px;
+.search-result li {
+    padding: 0.5rem;
+    color: #222222;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
 }
-
-.list-btn {
-  left: 181px;
-  position: fixed;
-  border: none;
-  width: 75px;
-  height: 40px;
-  padding: 5px 8px;
-  background: white;
-  font-weight: 600;
-  color: red;
-  border-radius: 0px 2px 0 0px;
-}
-
-.list-btn:hover {
-  background: #ebebeb;
-}
-
-.list-input {
-  height: 15px;
-  position: fixed;
-  top: 50px;
-  border: none;
-  padding: 5px 8px;
-  width: 230px;
-  box-shadow: 0 0 1px rgba(170, 170, 170, 0.75);
-
-}
-
-.locations-list {
-  position: fixed;
-  top: 75px;
-  padding: 0 10px 10px 10px;
-  list-style: none;
-  background: #fff;
-  width: 226px;
-  box-shadow: 0 0 1px rgba(170, 170, 170, 0.75);
-
-}
-
-.location-item {
-  padding: 10px 0;
-  border-bottom: 4px solid #fff;
-}
-
-.location-item:hover {
-  border-color: red;
-  color: red;
-  cursor: pointer;
+.search-result li:hover {
+    color: #ffffff;
+    background: #222222;
 }
 
 .foursquare {
-    position: absolute;
-    bottom: 2px;
-    width: 60%;
-    right: 0;
+    position: relative;
+    width: 40%;
 }
 
 /* INFO WINDOW */
