@@ -3,13 +3,13 @@ import { slide as Menu } from 'react-burger-menu'
 import escapeRegExp from 'escape-string-regexp'
 
 class Nav extends React.Component {
-  showSettings (event) {
-    event.preventDefault()
-  }
+
   state = {
     query: '',
     venue: this.props.venue
   }
+
+
     updateQuery = (query) => {
         this.setState({ query })
 
@@ -33,7 +33,11 @@ class Nav extends React.Component {
             }
         })
     }
+      showSettings (event) {
+    event.preventDefault()
+  }
   render () {
+    // nav sidebar styles
     var styles = {
           bmBurgerButton: {
             position: 'fixed',
@@ -84,9 +88,9 @@ class Nav extends React.Component {
                 value={this.state.query}
           />
           <img
-          class="foursquare"
+          className="foursquare"
           src="./public/foursquare_attr.png"
-          srcset="./public/foursquare_attr@2x.png"
+          srcSet="./public/foursquare_attr@2x.png"
           alt="Powered By Foursquare!"
           />
         </div>
@@ -96,7 +100,7 @@ class Nav extends React.Component {
               {this.state.venue.map((myVenue, index) => (
                   <li
                       key={index}
-                      tabindex={index}
+                      tabIndex={index}
                       className="item"
                       onClick={() => this.triggerMarkerClick(myVenue.venue.name)}
                   >
@@ -118,22 +122,3 @@ class Nav extends React.Component {
 }
 
 export default Nav
-
-
- {
-      //// ES5 P8 HTML
-      // <nav className="col-2 collapse bg-inverse pt-2 h-100 sidebar_width" id="sidebar">
-      // <h4 className="app_title text-white">Neighborhood Map</h4>
-      // <input className="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'"
-      // placeholder="Search Locations...">
-      // <hr className="sidebar_hr">
-      // <ul className="nav flex-column"
-      // data-bind="foreach: myLocationsFilter">
-      // <a href="#"><li className="nav-item text-white location_list"
-      // data-bind="text: title, click: $parent.populateAndBounceMarker"></li></a>
-      // </ul>
-      // <img className="foursquare"
-      // src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png"
-      // alt="Powered By Foursquare!">
-      // </nav>
-}

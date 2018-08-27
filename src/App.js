@@ -5,7 +5,6 @@ import * as dataLocations from './components/locations.json';
 import InfoWindow from './components/InfoWindow.js'
 import Footer from './components/Footer.js'
 import Nav from './components/Nav.js'
-// import SideNav, {MenuIcon} from 'react-simple-sidenav'
 import FilterLocations from './components/Filter.js'
 import axios from 'axios'
 
@@ -53,7 +52,8 @@ class App extends Component {
           allVenues: response.data.response.groups[0].items,
 
         }, this.renderMap(),
-        // console.log(this.state.venues)
+        console.log(this.state.venues),
+        console.log(this.state.allVenues)
         )
       })
       .catch(error => {
